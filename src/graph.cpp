@@ -6,3 +6,54 @@
  *      CS235
  *************************************************/
 // DECLARE ALL THE THNGS!!!!
+//I declare BANKRUPTCY!!
+#include "graph.h"
+#include "list.h"
+
+/************************************************
+ *SIZE
+ *returns the number of vertices in the graph
+ **********************************************/
+int Graph::size()
+{
+   return slots->size(); //use the set's size to find the num of Vertices?
+}
+
+/************************************************
+ *SIZE - CONST
+ *returns the number of vertices in the graph
+ ***********************************************/
+int Graph::size() const
+{
+   return slots->size();
+}
+
+/***********************************************
+ *EMPTY
+ *returns true if there are no vertices in the graph
+ *********************************************/
+bool Graph::empty()
+{
+   if(slots->size() == 0)
+      return true;
+   else
+      return false;
+}
+
+/************************************************
+ *CLEAR
+ *removes all vertices in the graph
+ ***********************************************/
+void Graph::clear()
+{
+   slots->clear();
+}
+
+/**********************************************
+ *CAPACITY
+ *returns the list size function
+ *********************************************/
+int Graph::capacity()
+{
+   return custom::list<T>::size();
+}
