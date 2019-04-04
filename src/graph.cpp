@@ -10,6 +10,21 @@
 #include "graph.h"
 #include "list.h"
 
+template <class T>
+Graph<T>::Graph()
+{
+	slots = nullptr;
+
+}
+
+template<class T>
+Graph<T>::Graph(const Graph<T> &rhs)
+{
+	this = rhs;
+}
+
+
+
 /************************************************
  *SIZE
  *returns the number of vertices in the graph
