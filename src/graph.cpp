@@ -40,6 +40,17 @@ bool Graph::empty()
       return false;
 }
 
+
+/************************
+* ADD
+* Add's to the graph
+***********************/
+void Graph::add(Vertex v1, Vertex v2)
+{
+	slots->begin.insert(v1, v2);
+}
+
+
 /************************************************
  *CLEAR
  *removes all vertices in the graph
@@ -55,5 +66,5 @@ void Graph::clear()
  *********************************************/
 int Graph::capacity()
 {
-   return custom::list<T>::size();
+	return slots->begin.size();
 }
