@@ -10,17 +10,15 @@
 #include "graph.h"
 #include "list.h"
 
-template <class T>
-Graph<T>::Graph()
+Graph::Graph()
 {
 	slots = nullptr;
 
 }
 
-template<class T>
-Graph<T>::Graph(const Graph<T> &rhs)
+Graph::Graph(const Graph &rhs)
 {
-	this = rhs;
+	*this = rhs;
 }
 
 
@@ -29,8 +27,7 @@ Graph<T>::Graph(const Graph<T> &rhs)
  *SIZE
  *returns the number of vertices in the graph
  **********************************************/
-template <class T>
-int Graph<T>::size()
+int Graph::size()
 {
    return slots->size(); //use the set's size to find the num of Vertices?
 }
@@ -39,8 +36,7 @@ int Graph<T>::size()
  *SIZE - CONST
  *returns the number of vertices in the graph
  ***********************************************/
-template <class T>
-int Graph<T>::size() const
+int Graph::size() const
 {
    return slots->size();
 }
@@ -49,8 +45,7 @@ int Graph<T>::size() const
  *EMPTY
  *returns true if there are no vertices in the graph
  *********************************************/
-template <class T>
-bool Graph<T>::empty()
+bool Graph::empty()
 {
    if(slots->size() == 0)
       return true;
@@ -63,15 +58,13 @@ bool Graph<T>::empty()
 * ADD
 * Add's to the graph
 ***********************/
-template <class T>
-void Graph<T>::add(Vertex v1, Vertex v2)
+void Graph::add(Vertex v1, Vertex v2)
 {
 	slots->begin.insert(v1, v2);
 }
 
 
-template <class T>
-void Graph<T>::add(Node<T> data, Vertex v1, Vertex v2)
+void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 {
 	slots->begin.insert(data, v1, v2);
 }
@@ -81,8 +74,7 @@ void Graph<T>::add(Node<T> data, Vertex v1, Vertex v2)
  *CLEAR
  *removes all vertices in the graph
  ***********************************************/
-template<class T>
-void Graph<T>::clear()
+void Graph::clear()
 {
    slots->clear();
 }
@@ -91,8 +83,7 @@ void Graph<T>::clear()
  *CAPACITY
  *returns the list size function
  *********************************************/
-template <class T>
-int Graph<T>::capacity()
+int Graph::capacity()
 {
 	return slots->begin.size();
 }
