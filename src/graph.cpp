@@ -12,18 +12,23 @@
 #include "graph.h"
 #include "list.h"
 
+/******************************************
+ *Constructors
+ * Because we aren't really storing any data, we don't need much here
+ ********************************************/
 Graph::Graph()
 {
-   slots = nullptr;
    
 }
 
+/******************************************
+ *Copy Constructor
+ * let the lower data types take care of the heavy lifting for you
+ *******************************************/
 Graph::Graph(const Graph &rhs)
 {
-   *this = rhs;
+   slots = rhs.slots;
 }
-
-
 
 /************************************************
  *SIZE

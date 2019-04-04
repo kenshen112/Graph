@@ -10,14 +10,19 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <string>
 #include "list.h"
 #include "set.h"
 #include "vertex.h"
+#include "map.h"
 
 class Graph
 {
   private:
-   custom::set <custom::list<Vertex>> *slots;
+   custom::map <string, custom::set<string>> slots;
+   //there is a map, the map hold a string which is the name of a vertex as the key
+   //attached to each vertex name is a set, whichc will act as a list of all the other
+   //vertices which that one has anedge pointing to.
 
   public:
    //constructors
@@ -26,7 +31,7 @@ class Graph
    Graph(int vertices); //we know how many vertex there are
 
    //assignment operator
-
+   
 
    //interface
    int size();
