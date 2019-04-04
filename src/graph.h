@@ -17,7 +17,7 @@
 class Graph
 {
   private:
-   custom::set <Vertex> *slots;
+   custom::set <custom::list<Vertex>> *slots;
 
   public:
    //constructors
