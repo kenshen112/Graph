@@ -14,7 +14,8 @@
  *SIZE
  *returns the number of vertices in the graph
  **********************************************/
-int Graph::size()
+template <class T>
+int Graph<T>::size()
 {
    return slots->size(); //use the set's size to find the num of Vertices?
 }
@@ -23,7 +24,8 @@ int Graph::size()
  *SIZE - CONST
  *returns the number of vertices in the graph
  ***********************************************/
-int Graph::size() const
+template <class T>
+int Graph<T>::size() const
 {
    return slots->size();
 }
@@ -32,7 +34,8 @@ int Graph::size() const
  *EMPTY
  *returns true if there are no vertices in the graph
  *********************************************/
-bool Graph::empty()
+template <class T>
+bool Graph<T>::empty()
 {
    if(slots->size() == 0)
       return true;
@@ -45,9 +48,17 @@ bool Graph::empty()
 * ADD
 * Add's to the graph
 ***********************/
-void Graph::add(Vertex v1, Vertex v2)
+template <class T>
+void Graph<T>::add(Vertex v1, Vertex v2)
 {
 	slots->begin.insert(v1, v2);
+}
+
+
+template <class T>
+void Graph<T>::add(Node<T> data, Vertex v1, Vertex v2)
+{
+	slots->begin.insert(data, v1, v2);
 }
 
 
@@ -55,7 +66,8 @@ void Graph::add(Vertex v1, Vertex v2)
  *CLEAR
  *removes all vertices in the graph
  ***********************************************/
-void Graph::clear()
+template<class T>
+void Graph<T>::clear()
 {
    slots->clear();
 }
@@ -64,7 +76,8 @@ void Graph::clear()
  *CAPACITY
  *returns the list size function
  *********************************************/
-int Graph::capacity()
+template <class T>
+int Graph<T>::capacity()
 {
 	return slots->begin.size();
 }

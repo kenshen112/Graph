@@ -13,7 +13,7 @@
 #include "list.h"
 #include "set.h"
 #include "vertex.h"
-
+template <class T>
 class Graph
 {
   private:
@@ -34,6 +34,7 @@ class Graph
    bool empty();
    void clear();
    void add(Vertex v1, Vertex v2);
+   void add(Node<T> data, Vertex v1, Vertex v2);
    bool isEdge(Vertex v1, Vertex v2);
    bool isEdge(const Vertex v1, const Vertex v2) const; //added a const version to fix compiler error
    //set <Vertex> findEdges(Vertex v); //i think this is declared right?
