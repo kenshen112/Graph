@@ -147,7 +147,7 @@ Graph readMaze(const char * fileName)
    if (fin.fail())
    {
       cout << "ERROR: Unable to open file " << fileName << endl;
-      return Graph(1);
+      return Graph();
    }
 
    // read the size from the beginning of the maze

@@ -7,18 +7,20 @@
  *************************************************/
 // DECLARE ALL THE THNGS!!!!
 //I declare BANKRUPTCY!!
+//thats not how the force works!!
+
 #include "graph.h"
 #include "list.h"
 
 Graph::Graph()
 {
-	slots = nullptr;
-
+   slots = nullptr;
+   
 }
 
 Graph::Graph(const Graph &rhs)
 {
-	*this = rhs;
+   *this = rhs;
 }
 
 
@@ -29,7 +31,14 @@ Graph::Graph(const Graph &rhs)
  **********************************************/
 int Graph::size()
 {
-   return slots->size(); //use the set's size to find the num of Vertices?
+   int size = 0;
+
+   for(int i = 0; i != slots->size(); i++);
+   {
+      size += slots[i].size();
+   }
+   
+   return size;
 }
 
 /************************************************
@@ -55,18 +64,18 @@ bool Graph::empty()
 
 
 /************************
-* ADD
-* Add's to the graph
-***********************/
+ * ADD
+ * Add's to the graph
+ ***********************/
 void Graph::add(Vertex v1, Vertex v2)
 {
-	slots->begin.insert(v1, v2);
+   slots->begin.insert(v1, v2);
 }
 
 
 void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 {
-	slots->begin.insert(data, v1, v2);
+   slots->begin.insert(data, v1, v2);
 }
 
 
@@ -85,5 +94,5 @@ void Graph::clear()
  *********************************************/
 int Graph::capacity()
 {
-	return slots->begin.size();
+   return slots->begin.size();
 }
