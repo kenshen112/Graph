@@ -74,13 +74,13 @@ bool Graph::empty()
  ***********************/
 void Graph::add(Vertex v1, Vertex v2)
 {
-   slots.begin.insert(v1, v2);
+   slots.insert(v1, v2);
 }
 
 
 void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 {
-   slots.begin.insert(data, v1, v2);
+   slots.insert(data, v1, v2);
 }
 
 
@@ -99,5 +99,5 @@ void Graph::clear()
  *********************************************/
 int Graph::capacity()
 {
-   return slots.begin.size();
+   return slots.size();
 }

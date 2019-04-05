@@ -19,7 +19,7 @@
 class Graph
 {
   private:
-   custom::map <string, custom::set<string>> slots;
+   custom::map <Vertex, custom::set<Vertex>> slots;
    //there is a map, the map hold a string which is the name of a vertex as the key
    //attached to each vertex name is a set, whichc will act as a list of all the other
    //vertices which that one has anedge pointing to.
