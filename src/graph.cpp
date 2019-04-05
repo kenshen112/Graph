@@ -18,6 +18,7 @@
  ********************************************/
 Graph::Graph()
 {
+   slots = nullptr;
    
 }
 
@@ -27,7 +28,7 @@ Graph::Graph()
  *******************************************/
 Graph::Graph(const Graph &rhs)
 {
-   slots = rhs.slots;
+   this->slots = rhs->slots;
 }
 
 /************************************************
