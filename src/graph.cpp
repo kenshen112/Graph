@@ -28,6 +28,7 @@ Graph::Graph()
 Graph::Graph(const Graph &rhs)
 {
    this->slots = rhs.slots;
+   this->vertices = rhs.vertices;
 }
 
 /*********************************************
@@ -44,12 +45,13 @@ Graph::Graph(int vertices)
 
    try
    {
-      slots = new set<Vertex>[vertices];
+      slots = new custom::set<Vertex>[vertices];
    }
    catch(std::bad_alloc)
    {
       throw "ERROR: Bad allocation";
    }
+   this->vertices = vertices;
    return;
       
 }
@@ -60,14 +62,7 @@ Graph::Graph(int vertices)
  **********************************************/
 int Graph::size()
 {
-   int size = 0;
-
-   for(int i = 0; i <= slots->size(); i++)
-   {
-      size += slots[i].size();
-   }
-   
-   return size;
+   return vertices;
 }
 
 /************************************************

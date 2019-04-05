@@ -20,6 +20,7 @@ class Graph
 {
   private:
    custom::set <Vertex> *slots;
+   int vertices;
 
   public:
    //constructors
