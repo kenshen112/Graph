@@ -19,7 +19,6 @@
 Graph::Graph()
 {
    slots = nullptr;
-   
 }
 
 /******************************************
@@ -29,6 +28,30 @@ Graph::Graph()
 Graph::Graph(const Graph &rhs)
 {
    this->slots = rhs.slots;
+}
+
+/*********************************************
+ *NON-DEFAULT Constructor
+ *we know how many vertices there are, and here we go
+ *********************************************/
+Graph::Graph(int vertices)
+{
+   if(vertices == 0)
+   {
+      slots = nullptr;
+      return;
+   }
+
+   try
+   {
+      slots = new set<Vertex>[vertices];
+   }
+   catch(std::bad_alloc)
+   {
+      throw "ERROR: Bad allocation";
+   }
+   return;
+      
 }
 
 /************************************************
@@ -102,4 +125,25 @@ void Graph::clear()
 int Graph::capacity()
 {
    return slots->size();
+}
+
+/**********************************************
+ * ISEDGE
+ * a crucial function to tell is a connection in a given direction exists
+ * includes a constant version
+ *********************************************/
+bool Graph::isEdge(Vertex v1, Vertex v2)
+{
+   if(slots[v1.index()].find(v2) == nullptr)
+      return false;
+   else
+      return true;
+}
+
+bool Graph::isEdge(const Vertex v1, const Vertex v2) const
+{
+   if(slots[v1.index()].find(v2) == nullptr)
+      return false;
+   else
+      return true;
 }
