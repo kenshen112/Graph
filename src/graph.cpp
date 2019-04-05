@@ -38,7 +38,7 @@ int Graph::size()
 {
    int size = 0;
 
-   for(int i = 0; i <= slots.size(); i++);
+   for(int i = 0; i <= slots.size(); i++)
    {
       size += slots[i].size();
    }
