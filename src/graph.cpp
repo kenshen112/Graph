@@ -28,7 +28,7 @@ Graph::Graph()
  *******************************************/
 Graph::Graph(const Graph &rhs)
 {
-   this->slots = rhs->slots;
+   this->slots = rhs.slots;
 }
 
 /************************************************
@@ -39,7 +39,7 @@ int Graph::size()
 {
    int size = 0;
 
-   for(int i = 0; i <= slots.size(); i++)
+   for(int i = 0; i <= slots->size(); i++)
    {
       size += slots[i].size();
    }
@@ -53,7 +53,7 @@ int Graph::size()
  ***********************************************/
 int Graph::size() const
 {
-   return slots.size();
+   return slots->size();
 }
 
 /***********************************************
@@ -62,7 +62,7 @@ int Graph::size() const
  *********************************************/
 bool Graph::empty()
 {
-   if(slots.size() == 0)
+   if(slots->size() == 0)
       return true;
    else
       return false;
@@ -71,19 +71,20 @@ bool Graph::empty()
 
 /************************
  * ADD
- * Add's to the graph
+ * Adds an edge connection to the graph
  ***********************/
 void Graph::add(Vertex v1, Vertex v2)
 {
-   slots.insert(v1, v2);
+   slots[v1.index()].insert(v2);
+   //slots->insert(v1, v2);
 }
 
-
+/*
 void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 {
    slots.insert(data, v1, v2);
 }
-
+*/
 
 /************************************************
  *CLEAR
@@ -91,7 +92,7 @@ void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
  ***********************************************/
 void Graph::clear()
 {
-   slots.clear();
+   slots->clear();
 }
 
 /**********************************************
@@ -100,5 +101,5 @@ void Graph::clear()
  *********************************************/
 int Graph::capacity()
 {
-   return slots.size();
+   return slots->size();
 }
