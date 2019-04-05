@@ -56,6 +56,29 @@ Graph::Graph(int vertices)
       
 }
 
+/************************************************************
+ *ASSIGNMENT operator
+ *make one graph into a copy of the other
+ ***********************************************************/
+Graph & Graph :: operator = (const Graph & rhs) throw (const char *)
+{
+   try
+   {
+      slots = new custom::set<Vertex>[rhs.vertices];
+   }
+   catch(std::bad_alloc)
+   {
+      throw "Error: Bad allocation";
+   }
+   
+   for(int i = 0; i != rhs.vertices; i++)
+   {
+      slots[i] = rhs.slots[i];
+   }
+
+   return *this;
+}
+
 /************************************************
  *SIZE
  *returns the number of vertices in the graph
@@ -104,6 +127,16 @@ void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 }
 */
 
+/**************************************
+ * Add in bulk
+ * this version of add takes a vertex to be the index,
+ * and a set of vertices detailing all of its connections, a little trickier? maybe.
+ *********************************************/
+void Graph::add(Vertex v1, custom::set<Vertex> vs)
+{
+   slots[v1.index()] = vs;
+}
+
 /************************************************
  *CLEAR
  *removes all vertices in the graph
@@ -129,7 +162,7 @@ int Graph::capacity()
  *********************************************/
 bool Graph::isEdge(Vertex v1, Vertex v2)
 {
-   if(slots[v1.index()].find(v2) == nullptr)
+   if(slots[v1.index()].find(v2) == slots[v1.index()].end())
       return false;
    else
       return true;
@@ -137,7 +170,7 @@ bool Graph::isEdge(Vertex v1, Vertex v2)
 
 bool Graph::isEdge(const Vertex v1, const Vertex v2) const
 {
-   if(slots[v1.index()].find(v2) == nullptr)
+   if(slots[v1.index()].find(v2) == slots[v1.index()].end())
       return false;
    else
       return true;

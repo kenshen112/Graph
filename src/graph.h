@@ -29,7 +29,7 @@ class Graph
    Graph(int vertices); //we know how many vertex there are
 
    //assignment operator
-   
+   Graph & operator = (const Graph & rhs) throw (const char *);
 
    //interface
    int size();
@@ -38,6 +38,7 @@ class Graph
    bool empty();
    void clear();
    void add(Vertex v1, Vertex v2);
+   void add(Vertex v1, custom::set <Vertex> vs);
    void add(Node<Vertex> data, Vertex v1, Vertex v2);
    bool isEdge(Vertex v1, Vertex v2);
    bool isEdge(const Vertex v1, const Vertex v2) const; //added a const version to fix compiler error
