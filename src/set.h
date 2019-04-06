@@ -601,8 +601,8 @@ void set <T> :: display() const
 
 
 /**************************************************
- * SET ITERATOR
- * An iterator through set
+ * SET CONST_ITERATOR
+ * An const_iterator through set
  *************************************************/
 template <class T>
 class set <T> :: const_iterator

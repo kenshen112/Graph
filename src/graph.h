@@ -10,6 +10,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include "vector.h"
 #include <string>
 #include "list.h"
 #include "set.h"
@@ -43,7 +44,12 @@ class Graph
    bool isEdge(Vertex v1, Vertex v2);
    bool isEdge(const Vertex v1, const Vertex v2) const; //added a const version to fix compiler error
    custom::set <Vertex> findEdges(Vertex v); //i think this is declared right?
-   //list <Vertex> findPath(Vertex v1, Vertex v2); //again i think this is right?
+   custom::vector<Vertex> findPath(Vertex v1, Vertex v2); //again i think this is right?
+
+   //just to make the maze easier :)
+   int columns;
+   int rows;
+   int findHeuristic(Vertex v1, Vertex v2);
   
 };
 

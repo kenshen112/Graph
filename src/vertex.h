@@ -45,6 +45,9 @@ public:
    
    // get a scalar value
    int index() const { return i; }
+   int p;
+   int H;
+   int F;
    
    // operators so we can use with an associative container
    bool operator >  (const Vertex & rhs) const {return index() >  rhs.index();}

@@ -162,7 +162,9 @@ Graph readMaze(const char * fileName)
    Graph g(vFrom.getMax());
    while (fin >> vFrom >> vTo)
       g.add(vFrom, vTo);
-
+   g.rows = numRow;
+   g.columns = numCol;
+   
    // all done!
    fin.close();
    return g;

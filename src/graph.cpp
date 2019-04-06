@@ -29,6 +29,8 @@ Graph::Graph(const Graph &rhs)
 {
    this->slots = rhs.slots;
    this->vertices = rhs.vertices;
+   this->columns = rhs.columns;
+   this->rows = rhs.rows;   
 }
 
 /*********************************************
@@ -53,7 +55,6 @@ Graph::Graph(int vertices)
    }
    this->vertices = vertices;
    return;
-      
 }
 
 /************************************************************
@@ -75,6 +76,9 @@ Graph & Graph :: operator = (const Graph & rhs) throw (const char *)
    {
       slots[i] = rhs.slots[i];
    }
+
+   rows = rhs.rows;
+   columns = rhs.columns;
 
    return *this;
 }
@@ -184,5 +188,79 @@ bool Graph::isEdge(const Vertex v1, const Vertex v2) const
 custom::set <Vertex> Graph::findEdges(Vertex v)
 {
    return slots[v.index()];
+}
+
+
+/***********************************************
+ * FIND HEURISTIC
+ * assuming a grid organization, it should be possible to find
+ * the 'distance' between two vertices
+ ************************************************/
+int Graph::findHeuristic(Vertex v1, Vertex v2)
+{
+   int a = v1.index();
+   int b = v2.index();
+
+   a++;
+   b++;
+   //if solutions aren't working, try switching to divide by rows instead
+   int ax = a % columns;
+   int ay = a / columns;
+
+   int bx = b % columns;
+   int by = b / columns;
+
+   int H;
+
+   H = (bx - ax) + (by - ay); //using the manhattan distances
+
+   return H;
+      
+}
+
+
+/*************************************************
+ * FIND PATH
+ * Traverses the graph in a* method to find the shortest path
+ **************************************************/
+custom::vector <Vertex> Graph::findPath(Vertex v1, Vertex v2)
+{
+   custom::vector <Vertex> path;
+
+   custom::list<Vertex> open;
+   custom::list<Vertex> closed;
+
+   Vertex current = v1;
+   Vertex prior;
+
+   open.push_back(current);
+   
+   int totalDistance = 0;
+
+   int F = totalDistance + findHeuristic(v1, v2);
+
+   while(current != v2)
+   {
+      custom::set<Vertex>::iterator it;
+      it = slots[current.index()].begin();
+      
+      for(it; it != slots[current.index()].end(); it++)
+      {
+         if(!(open.find(*it)) && !(closed.find(*it)))
+         {
+            open.push_back(*it);
+         }
+
+         
+            
+         
+      }
+   }
+   
+
+   
+   
+   
+   return path;
 }
 
