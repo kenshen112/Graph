@@ -74,6 +74,10 @@ public:
    iterator end();
    iterator find(T t);
    iterator erase(iterator it);
+   class const_iterator;
+   const_iterator cbegin()   {return const_iterator(data); }
+   const_iterator cend();
+   
    
    // a debug utility to display the array
    // this gets compiled to nothing if NDEBUG is defined
@@ -594,6 +598,82 @@ void set <T> :: display() const
       std::cerr << "\tdata[" << i << "] = " << data[i] << "\n";
 #endif // NDEBUG
 }
+
+
+/**************************************************
+ * SET ITERATOR
+ * An iterator through set
+ *************************************************/
+template <class T>
+class set <T> :: const_iterator
+{
+public:
+   // constructors, destructors, and assignment operator
+   const_iterator()      : p(NULL)      {              }
+   const_iterator(T * p) : p(p)         {              }
+   const_iterator(const iterator & rhs) { *this = rhs; }
+   const_iterator & operator = (const const_iterator & rhs)
+   {
+      this->p = rhs.p;
+      return *this;
+   }
+
+   // equals, not equals operator
+   bool operator != (const const_iterator & rhs) const { return rhs.p != this->p; }
+   bool operator == (const const_iterator & rhs) const { return rhs.p == this->p; }
+
+   // dereference operator
+   T & operator * ()       { return *p; }
+   const T & operator * () const { return *p; }
+
+   // prefix increment
+   const_iterator & operator ++ ()
+   {
+      p++;
+      return *this;
+   }
+
+   // postfix increment
+   const_iterator operator ++ (int postfix)
+   {
+      const_iterator tmp(*this);
+      p++;
+      return tmp;
+   }
+
+   //prefix decrement
+   const_iterator & operator --()
+   {
+      p--;
+      return *this;
+   }
+   
+   //postfix decrement
+   const_iterator operator -- (int postfix)
+   {
+      const_iterator tmp(*this);
+      p--;
+      return tmp;
+   }
+   
+private:
+   T * p;
+};
+
+/********************************************
+ * SET :: END
+ * Note that you have to use "typename" before
+ * the return value type
+ ********************************************/
+template <class T>
+typename set <T> :: const_iterator set <T> :: cend ()
+{
+   return const_iterator (data + numElements); //using numElements
+}
+
+
+
+
 
 }; // namespace custom
 

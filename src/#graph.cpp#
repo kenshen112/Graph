@@ -18,7 +18,7 @@
  ********************************************/
 Graph::Graph()
 {
-   
+   slots = nullptr;
 }
 
 /******************************************
@@ -27,7 +27,57 @@ Graph::Graph()
  *******************************************/
 Graph::Graph(const Graph &rhs)
 {
-   slots = rhs.slots;
+   this->slots = rhs.slots;
+   this->vertices = rhs.vertices;
+}
+
+/*********************************************
+ *NON-DEFAULT Constructor
+ *we know how many vertices there are, and here we go
+ *********************************************/
+Graph::Graph(int vertices)
+{
+   if(vertices == 0)
+   {
+      slots = nullptr;
+      return;
+   }
+
+   try
+   {
+      slots = new custom::set<Vertex>[vertices];
+   }
+   catch(std::bad_alloc)
+   {
+      throw "ERROR: Bad allocation";
+   }
+
+   this->vertices = vertices;
+   return;
+      
+}
+
+/************************************************************
+ *ASSIGNMENT operator
+ *make one graph into a copy of the other
+ ***********************************************************/
+Graph & Graph :: operator = (const Graph & rhs) throw (const char *)
+{
+   try
+   {
+      slots = new custom::set<Vertex>[rhs.vertices];
+   }
+   catch(std::bad_alloc)
+   {
+      throw "Error: Bad allocation";
+   }
+   
+   for(int i = 0; i != rhs.vertices; i++)
+   {
+      slots[i] = rhs.slots[i];
+   }
+
+   return *this;
 }
 
 /************************************************
@@ -36,14 +86,7 @@ Graph::Graph(const Graph &rhs)
  **********************************************/
 int Graph::size()
 {
-   int size = 0;
-
-   for(int i = 0; i != slots->size(); i++);
-   {
-      size += slots[i].size();
-   }
-   
-   return size;
+   return vertices;
 }
 
 /************************************************
@@ -70,19 +113,30 @@ bool Graph::empty()
 
 /************************
  * ADD
- * Add's to the graph
+ * Adds an edge connection to the graph
  ***********************/
 void Graph::add(Vertex v1, Vertex v2)
 {
-   slots->begi
+   slots[v1.index()].insert(v2);
+   //slots->insert(v1, v2);
 }
 
-
+/*
 void Graph::add(Node<Vertex> data, Vertex v1, Vertex v2)
 {
-   slots->begin.insert(data, v1, v2);
+   slots.insert(data, v1, v2);
 }
+*/
 
+/**************************************
+ * Add in bulk
+ * this version of add takes a vertex to be the index,
+ * and a set of vertices detailing all of its connections, a little trickier? maybe.
+ *********************************************/
+void Graph::add(Vertex v1, custom::set<Vertex> vs)
+{
+   slots[v1.index()] = vs;
+}
 
 /************************************************
  *CLEAR
@@ -99,5 +153,37 @@ void Graph::clear()
  *********************************************/
 int Graph::capacity()
 {
-   return slots->begin.size();
+   return slots->size();
 }
+
+/**********************************************
+ * ISEDGE
+ * a crucial function to tell is a connection in a given direction exists
+ * includes a constant version
+ *********************************************/
+bool Graph::isEdge(Vertex v1, Vertex v2)
+{
+   if(slots[v1.index()].find(v2) == slots[v1.index()].end())
+      return false;
+   else
+      return true;
+}
+
+bool Graph::isEdge(const Vertex v1, const Vertex v2) const
+{
+   if(slots[v1.index()].find(v2) == slots[v1.index()].end())
+      return false;
+   else
+      return true;
+}
+
+/************************************************
+ * FIND EDGES
+ * remember how we could add edges one at a time, or in bulk?
+ * well now we can find edges, and we can find edges in bulk!
+ ************************************************/
+custom::set <Vertex> Graph::findEdges(Vertex v)
+{
+   return slots[v.index()];
+}
+

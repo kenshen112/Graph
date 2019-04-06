@@ -42,7 +42,7 @@ class Graph
    void add(Node<Vertex> data, Vertex v1, Vertex v2);
    bool isEdge(Vertex v1, Vertex v2);
    bool isEdge(const Vertex v1, const Vertex v2) const; //added a const version to fix compiler error
-   //set <Vertex> findEdges(Vertex v); //i think this is declared right?
+   custom::set <Vertex> findEdges(Vertex v); //i think this is declared right?
    //list <Vertex> findPath(Vertex v1, Vertex v2); //again i think this is right?
   
 };

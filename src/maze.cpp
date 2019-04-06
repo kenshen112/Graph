@@ -176,7 +176,21 @@ Graph readMaze(const char * fileName)
  *****************************************/
 void solveMaze()
 {
+   cout << "What is the fielname? ";
+   string filename;
+   cin >> filename;
+
+   Graph g(readMaze("maze5x5.txt"));
+
+   vector<Vertex> v1;
+
+   drawMaze(g, v1);
+
+   cout << "Press any key to solve the maze\n";
 
    // your code goes here.
+
+   //How do we know where the start and end of the maze are?
+   
 }
 

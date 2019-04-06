@@ -175,3 +175,14 @@ bool Graph::isEdge(const Vertex v1, const Vertex v2) const
    else
       return true;
 }
+
+/************************************************
+ * FIND EDGES
+ * remember how we could add edges one at a time, or in bulk?
+ * well now we can find edges, and we can find edges in bulk!
+ ************************************************/
+custom::set <Vertex> Graph::findEdges(Vertex v)
+{
+   return slots[v.index()];
+}
+
