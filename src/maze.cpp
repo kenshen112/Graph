@@ -178,11 +178,11 @@ Graph readMaze(const char * fileName)
  *****************************************/
 void solveMaze()
 {
-   cout << "What is the fielname? ";
+   cout << "What is the filename? ";
    string filename;
    cin >> filename;
-
-   Graph g(readMaze("maze5x5.txt"));
+   
+   Graph g = readMaze("maze5x5.txt");
 
    vector<Vertex> v1;
 
