@@ -98,7 +98,7 @@ int Graph::size()
  ***********************************************/
 int Graph::size() const
 {
-   return slots->size();
+   return vertices;
 }
 
 /***********************************************

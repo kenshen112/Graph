@@ -182,7 +182,7 @@ void solveMaze()
    string filename;
    cin >> filename;
    
-   Graph g = readMaze("maze5x5.txt");
+   Graph g = readMaze(filename.c_str());
 
    vector<Vertex> v1;
 
